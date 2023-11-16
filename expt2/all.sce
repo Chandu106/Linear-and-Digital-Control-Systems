@@ -1,0 +1,57 @@
+clc;
+clear;
+//mechanical system
+s = poly(0,'s')
+m = input("enter the mass value: ")
+b = input("enter the damping value: ")
+k = input("enter the spring constant: ")
+t1 = 1/((m*s^2) + (b*s) + (k))
+t = 0:0.05:25
+subplot(2,3,1)  
+title("mechanical system")
+xlabel('time')
+ylabel('amplitude')
+plot2d(t, csim('step', t, t1))
+subplot(2,3,2)
+title("mechanical system")
+xlabel("time")
+ylabel("amplitude")
+plot2d(t, csim('impulse', t, t1))
+
+//electrical system
+s = poly(0,'s')
+r = input("enter the resistance value: ")
+c = input("enter the capacitance value: ")
+t2 = 1 / (1 + (3*r*c*s) + (r*r)*(s*s)*(c*c))
+t = 0:0.05:25
+subplot(2,3,3)
+plot2d(t, csim("step", t, t2))
+title("electrical system")
+xlabel("time")
+ylabel("amplitude")
+subplot(2,3,4)
+plot2d(t, csim("impulse", t, t2))
+title("electrical system")
+xlabel("time")
+ylabel("amplitude")
+
+//electro mechanical system
+s = poly(0, 's')
+r = input("enter the resistance: ")
+l = input("enter the inductance: ")
+b = input("enter the value of b : ")
+j = input("enter the value of j: ")
+kt = input("enter the value of kt: ")
+kb = input("enter the value of kb: ")
+t3 = kt / (((r+(l*s))*(s*b+(s*s*j))) + (s*kt*kb))
+t = 0:0.05:25
+subplot(2,3,5)
+plot2d(t, csim("step", t, t3))
+title("electro mechanical system")
+xlabel("time")
+ylabel("amplitude")
+subplot(2,3,6)
+plot2d(t, csim("impulse", t, t3))
+title("electro mechanical system")
+xlabel("time")
+ylabel("amplitude")
