@@ -32,6 +32,10 @@ sys2 = syslin("c",sys2)
 disp(sys2)
 sys2 = tf2ss(sys2)
 disp(sys2)
+a = sys2("A")
+disp(a)
+eig_values = spec(a)
+disp(eig_values)
 scf
 t2 = 0:0.5:100
 plot2d(t2, csim("step",t2, sys2))
@@ -42,6 +46,10 @@ sys3 = syslin("c",sys3)
 disp(sys3)
 sys3 = tf2ss(sys3)
 disp(sys3)
+b = sys3("A")
+disp(b)
+eig_values2 = spec(b)
+disp(eig_values2)
 scf
 t3 = 0:0.5:100
 plot2d(t3, csim("step",t3,sys3))
